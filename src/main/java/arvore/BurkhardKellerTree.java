@@ -1,11 +1,10 @@
-
 package arvore;
 
 import distancias.IDistanceCalculator;
 
 public class BurkhardKellerTree {
 
-	private Node root;
+	private No raiz;
 
 	private IDistanceCalculator calculator;
 
@@ -16,15 +15,15 @@ public class BurkhardKellerTree {
 	/**
 	 * Adiciona no a partir de string passada e adiciona o no na árvore
 	 */
-	public void addNode(String no) {
+	public void adicionaNo(String no) {
 
 		if (no == null || no.isEmpty()) {
 		} else {
-			Node newNode = new Node(no);
-			if (root == null) {
-				root = newNode;
+			No novoNo = new No(no);
+			if (raiz == null) {
+				raiz = novoNo;
 			} else {
-				add(root, newNode);
+				adiciona(raiz, novoNo);
 			}
 		}
 	}
@@ -32,36 +31,103 @@ public class BurkhardKellerTree {
 	/**
 	 * Adiciona nó na árvore de acordo com a distancia do DistanceCalculator
 	 */
-	private void add(Node srcNode, Node newNode) {
+	private void adiciona(No srcNode, No novoNo) {
 
-		if (srcNode.equals(newNode)) {
+		if (srcNode.equals(novoNo)) {
 			return;
 		}
 
-		double distance = calculator.distanciaEntrePalavras(srcNode.getWord(), newNode.getWord());
+		double distance = calculator.distanciaEntrePalavras(srcNode.getPalavra(), novoNo.getPalavra());
 
 		if (!calculator.isKeyboardLayoutNeutro()) {
 			int modificador = 100;
 			distance = distance * modificador;
 		}
 
-		Node bkNode = srcNode.filhoNumaDistancia((int) distance);
-		if (bkNode == null) {
-			srcNode.addChildNode((int) distance, newNode);
+		No noBk = srcNode.filhoNumaDistancia((int) distance);
+		if (noBk == null) {
+			srcNode.adicionarNoFilho((int) distance, novoNo);
 		}
 
 		// senao adiciona nó como filho
 		else {
-			add(bkNode, newNode);
+			adiciona(noBk, novoNo);
 		}
 	}
 
 	/**
 	 * Funcao para busca de nó com uma distancia máxima
 	 */
-	public BurkhardKellerTreeSearchResult search(String word, int distanciaMaximaPermitida, int maxWords) {
-		return new BurkhardKellerTreeSearchResult(root.search(word, distanciaMaximaPermitida, calculator));
+	public BurkhardKellerTreeSearchResult busca(String palavra, int distanciaMaximaPermitida, int maxWords) {
+		return new BurkhardKellerTreeSearchResult(raiz.busca(palavra, distanciaMaximaPermitida, calculator));
 
 	}
 
 }
+package arvore;
+
+import distancias.IDistanceCalculator;
+
+public class BurkhardKellerTree {
+
+	private No raiz;
+
+	private IDistanceCalculator calculator;
+
+	public BurkhardKellerTree(IDistanceCalculator calculator) {
+		this.calculator = calculator;
+	}
+
+	/**
+	 * Adiciona no a partir de string passada e adiciona o no na árvore
+	 */
+	public void adicionaNo(String no) {
+
+		if (no == null || no.isEmpty()) {
+		} else {
+			No novoNo = new No(no);
+			if (raiz == null) {
+				raiz = novoNo;
+			} else {
+				adiciona(raiz, novoNo);
+			}
+		}
+	}
+
+	/**
+	 * Adiciona nó na árvore de acordo com a distancia do DistanceCalculator
+	 */
+	private void adiciona(No srcNode, No novoNo) {
+
+		if (srcNode.equals(novoNo)) {
+			return;
+		}
+
+		double distance = calculator.distanciaEntrePalavras(srcNode.getPalavra(), novoNo.getPalavra());
+
+		if (!calculator.isKeyboardLayoutNeutro()) {
+			int modificador = 100;
+			distance = distance * modificador;
+		}
+
+		No noBk = srcNode.filhoNumaDistancia((int) distance);
+		if (noBk == null) {
+			srcNode.adicionarNoFilho((int) distance, novoNo);
+		}
+
+		// senao adiciona nó como filho
+		else {
+			adiciona(noBk, novoNo);
+		}
+	}
+
+	/**
+	 * Funcao para busca de nó com uma distancia máxima
+	 */
+	public BurkhardKellerTreeSearchResult busca(String palavra, int distanciaMaximaPermitida, int maxWords) {
+		return new BurkhardKellerTreeSearchResult(raiz.busca(palavra, distanciaMaximaPermitida, calculator));
+
+	}
+
+}
+
