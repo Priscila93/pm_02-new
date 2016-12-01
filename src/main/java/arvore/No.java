@@ -7,7 +7,7 @@ import java.util.Map;
 import distancias.IDistanceCalculator;
 
 /**
- * Classe do nó
+ * Classe que define os nós da BKTree.
  * 
  * @author marcella e priscila
  *
