@@ -23,11 +23,16 @@ public class BurkhardKellerTreeSearchResult {
 
 	}
 
-	public String getWord(int posicao) {
+        /** 
+        * get da palavra
+        */
+	public String getPalavra(int posicao) {
 		return palavras.get(posicao).getPalavra();
 	}
-
-	public double getDistance(int posicao) {
+/** 
+        * get da distancia
+        */
+	public double getDistancia(int posicao) {
 		return palavras.get(posicao).getDistancia();
 	}
 
