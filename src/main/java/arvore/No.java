@@ -6,6 +6,13 @@ import java.util.Map;
 
 import distancias.IDistanceCalculator;
 
+/**
+ * Classe do nó
+ * 
+ * @author marcella e priscila
+ *
+ */
+
 public class No {
 
 	private final String palavra;
@@ -17,6 +24,9 @@ public class No {
 
 	}
 
+        /**
+	 * get da palavra
+	 */
 	public String getPalavra() {
 		return palavra;
 	}
