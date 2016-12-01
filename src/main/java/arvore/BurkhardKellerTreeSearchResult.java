@@ -6,32 +6,29 @@ import java.util.Collections;
 /**
  * Árvore de ordenação
  * 
- * @author Filipe
+ * @author marcella e priscila
  *
  */
 public class BurkhardKellerTreeSearchResult {
 
-	private ArrayList<Word> words;
+	private ArrayList<Palavra> palavras;
 
-	public BurkhardKellerTreeSearchResult(ArrayList<Word> words) {
-		this.words = words;
+	public BurkhardKellerTreeSearchResult(ArrayList<Palavra> palavras) {
+		this.palavras = palavras;
 
-		for (Word word : words) {
-			System.out.println(word.getWord());
+		for (Palavra palavra : palavras) {
+			System.out.println(palavra.getPalavra());
 		}
-		Collections.sort(words);
+		Collections.sort(palavras);
 
 	}
 
-	public String getWord(int position) {
-		return words.get(position).getWord();
+	public String getWord(int posicao) {
+		return palavras.get(posicao).getPalavra();
 	}
 
-	public double getDistance(int position) {
-		return words.get(position).getDistance();
+	public double getDistance(int posicao) {
+		return palavras.get(posicao).getDistancia();
 	}
 
 }
-
-
-
