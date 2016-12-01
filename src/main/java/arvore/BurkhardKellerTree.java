@@ -2,6 +2,13 @@ package arvore;
 
 import distancias.IDistanceCalculator;
 
+/**
+ *
+ *  Classe que define a BKTree.
+ * 
+ *  @author marcella e priscila
+ */
+
 public class BurkhardKellerTree {
 
 	private No raiz;
